@@ -1,0 +1,102 @@
+---
+layout: reveal
+title: Functional programming
+---
+
+<section data-markdown>
+<script type="text/template">
+## Functional programming
+### Introduction to functional programming
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Functional programming
+
+- Programming paradigm (a way of implementing programs)
+- Declarative: we tell the program how things are, not the sequence of commands to solve the problem (*imperative*)
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Functional programming features
+
+- **Referential transparency**: calling a function with the same arguments must produce always the same result
+- **Data immutability**
+- **Function composition**: the output of a function can be joined with the input of next one (functions are treated as data)
+- **First order functions**: functions that are passed as parameters to another functions
+
+</script>
+</section>  
+
+<section>
+    <h2>Example of side effects</h2>
+    <p>This function gets different result every time we call it with parameter 1</p>
+    <pre><code data-trim data-noescape>    
+int externalValue = 1;
+int aFunction(int param)
+{
+    externalValue++;
+    return externalValue + param;
+}        
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Functional languages
+
+- **Pure**: they only work with functional paradigm
+   - Haskell, Miranda
+- **Hybrid**: they were conceived to be functional, but work with other paradigms as well
+   - Scala, Clojure
+- **Other**: many currently popular languages have incorporated some functional features
+   - Java, C#, JavaScript, Python...
+</script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+## Imperative example
+
+Filter adult people from a *people* list
+
+```java
+List<Person> adultPeople = new ArrayList<>();
+for (int i = 0; i < people.size(); i++) {
+    if (people.get(i).getAge() >= 18)
+        adultPeople.add(people.get(i));
+}            
+```
+</script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+## Declarative example
+
+Filter adult people from a *people* list
+
+```java
+List<Person> adultPeople = people.stream()
+.filter(p -> p.getAge() >= 18)
+.collect(Collectors.toList()); 
+```
+
+</script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+## Conclusions
+
+- Functional programming is usually shorter and less error prone
+- In Java, it is mainly focused on:
+   - Implementing functional interfaces with lambda expressions
+   - Managing collections through streams
+
+</script>
+</section>

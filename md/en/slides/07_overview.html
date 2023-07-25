@@ -1,0 +1,363 @@
+---
+layout: reveal
+title: File management
+---
+
+<section data-markdown>
+<script type="text/template">
+## File management in Java
+### Quick overview
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Exception handling
+
+- We use a **try..catch** statement to place code that can cause an error
+- Regarding file managemenent:
+   - If file does not exists: *FileNotFoundException*
+   - If there's an error reading or writing file: *IOException*
+- We can add a **finally** clause at the end with the code to be run in any case
+   - Typically, closing the file when we are managing files
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Exception handling example
+
+```java
+try
+{
+    // Code that may fail
+}
+catch(FileNotFoundException e)
+{
+    // Error message if file is not found
+}
+catch(IOException e)
+{
+    // Error message if error happens processing file
+}
+finally
+{
+    // Code to be run in any case
+}
+```
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Try-with-resources
+
+- For those classes which implement *AutoCloseable* interface
+- We can instantiate objects of these classes in the *try* clause and avoid closing them in *finally*
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Try-with-resources example
+
+```java
+try (Object instantiation)
+{
+    // Code that may fail
+}
+catch(FileNotFoundException e)
+{
+    // Error message if file is not found
+}
+catch(IOException e)
+{
+    // Error message if error happens processing file
+}
+
+// No finally needed, object is automatically closed
+```
+
+</script>
+</section>    
+
+<section data-markdown>
+<script type="text/template">
+## Steps when managing files
+
+- Catch possible exceptions: **FileNotFoundException** and **IOException**
+   - We can just catch *IOException*, which is parent class
+- Close file when process is finished
+- We need to import **java.io** package to use most of the classes involved
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Writing text files
+
+- **PrintWriter** class provides **println** and other useful methods
+- We can use **try-with-resources** to avoid closing the file
+
+</script>
+</section>
+
+<section>
+    <h2>Example of writing a file</h2>
+    <pre><code data-trim data-noescape>    
+try (PrintWriter printWriter = new PrintWriter ("example.txt"))
+{
+    printWriter.println ("Hello!");
+    printWriter.println ("Goodbye!");
+}
+catch (IOException e) 
+{
+    System.err.println("Error writing file: " + e.getMessage());
+}
+    </code></pre>
+</section>
+
+<section>
+    <h2>Example of appending at the end of file</h2>
+    <pre><code data-trim data-noescape>    
+PrintWriter printWriter = null;
+try 
+{
+    printWriter = new PrintWriter(new BufferedWriter(
+        new FileWriter("example.txt", true)));
+    printWriter.println ("Hello again!");
+    printWriter.println ("Goodbye!");
+}
+catch (IOException e) 
+{
+    System.err.println("Error writing file: " + e.getMessage());
+}
+finally 
+{
+    if (printWriter != null)  
+    {
+        printWriter.close();
+    }
+}
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Reading text files
+
+- **BufferedReader** class provides **readLine** method to read line by line
+   - We must create the object through a *FileReader* object
+- We can also use **try-with-resources** to avoid closing the file
+
+</script>
+</section>
+    
+<section>
+    <h2>Example of reading a file</h2>
+    <pre><code data-trim data-noescape>    
+try (BufferedReader inputFile = new BufferedReader(
+        new FileReader(new File("example.txt"))))
+{
+
+    String line = null;
+    while ((line = inputFile.readLine()) != null) 
+    {
+        System.out.println(line);
+    }
+}
+catch (IOException fileError) 
+{
+    System.err.println(
+        "Error reading file: " +
+        fileError.getMessage() );
+}
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Extending performance
+
+- We can extend from any of the classes provided by Java to include new functionalities
+- Next example extends *BufferedReader* to return the lines that we read converted to uppercase
+
+</script>
+</section>
+
+<section>
+    <h2>Example of extending a reader</h2>
+    <pre><code data-trim data-noescape>    
+public class UpperCaseReader extends BufferedReader 
+{
+    public UpperCaseReader(Reader reader) 
+    {
+        super(reader);
+    }
+
+    @Override
+    public String readLine() throws IOException 
+    {
+        String line = super.readLine();
+        return line != null?line.toUpperCase():null;    
+    }
+}
+
+// Main
+try(UpperCaseReader buffer = 
+    new UpperCaseReader(new FileReader("file.txt"))) 
+{
+    String line;
+    while((line = buffer.readLine()) != null) 
+    {
+        System.out.println(line);
+    }
+} catch ...
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Exercise
+
+Do **Exercise 1** of the document associated to these slides
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Filesystem management
+
+- **Path**, **Paths** and **Files** classes let us manage our filesystem
+- We usually need to create a *Path* to a given location, and then make use of *Files* static methods
+- These classes belong to **java.nio** package
+
+</script>
+</section>
+    
+<section>
+    <h2>Example: copying a file</h2>
+    <pre><code data-trim data-noescape>    
+try
+{
+    if (!Files.exists(Paths.get("copy")))
+        Files.createDirectory(Paths.get("copy"));
+
+    Files.copy(Paths.get("data/file.txt"), 
+        Paths.get("copy/file.txt"),
+        StandardCopyOption.REPLACE_EXISTING);
+}
+catch(IOException e)
+{
+    ...
+}
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Exercise
+
+Do **Exercise 2** of the document associated to these slides
+
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Object serialization
+
+- Lets us store complex objects in binary files, and retrieve them easily
+- We just need to tag the involved classes as serializable
+   - Just implement **Serializable** interface
+
+</script>
+</section>
+
+<section>
+    <h2>Serialization example</h2>
+    <pre><code data-trim data-noescape>    
+class Person implements Serializable
+{
+    private String name;
+    private int age;
+
+    ...
+}
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Reading/Writing serialized data
+
+- **ObjectOutputStream** lets us write objects using **writeObject** method
+- **ObjectInputStream** lets us read objects using **readObject** method
+   - If we want to read all the contents, there's no way to detect the end of file. An **EOFException** is thrown instead
+
+</script>
+</section>
+    
+<section>
+    <h2>Writing example</h2>
+    <pre><code data-trim data-noescape>    
+try(ObjectOutputStream oos =
+    new ObjectOutputStream(new FileOutputStream("people.dat")))
+{
+    oos.writeObject(new Person("John", 49));
+    oos.writeObject(new Person("Susan", 45));
+}
+catch (IOException e)
+{
+    System.err.println("Error storing people");
+}
+    </code></pre>
+</section>
+
+<section>
+    <h2>Reading example</h2>
+    <pre><code data-trim data-noescape>    
+try(ObjectInputStream ois =
+    new ObjectInputStream(new FileInputStream("people.dat")))
+{
+    while(true)
+    {
+        Person p = (Person)(ois.readObject());
+        System.out.println(p);
+    }
+}
+catch (Exception e)
+{
+    System.err.println("Error storing people");
+}    
+    </code></pre>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+## Reading/Writing a collection
+
+```java
+List<Person> people = new ArrayList<>();
+people.add(new Person(...));
+people.add(new Person(...));
+oos.writeObject(people);
+...
+List<Person> people2 = (List<Person>)(ois.readObject());
+```
+</script>            
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Exercise
+
+Do **Exercise 3** of the document associated to these slides
+
+</script>
+</section>

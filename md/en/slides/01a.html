@@ -1,0 +1,55 @@
+---
+layout: reveal
+title: Structure of a Java program
+---
+
+<section data-markdown>
+<script type="text/template">
+## Basic elements of a Java program
+### Structure of a Java program
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Our first "Hello" program
+
+```csharp
+public class MyClass
+{
+    public static void main(String[] args)
+    {
+        System.out.println("Hello");
+    }
+}
+```
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Things to take into account
+
+- Every public class must have the same name as the source file that contains it
+   - *MyClass.java* for previous example
+- There should always be (at least) one public class in every Java source file
+- *main* in Java starts with lower case
+- *String* in Java starts with upper case
+- *main* method always has a *String[] args* element between parentheses
+
+</script>
+</section>
+        
+<section data-markdown>
+<script type="text/template">
+## Compiling and running
+
+Use **javac** to compile and **java** to run compiled file
+
+```
+javac MyClass.java
+java MyClass
+```
+
+</script>
+</section>

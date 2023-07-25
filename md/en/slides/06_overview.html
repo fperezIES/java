@@ -1,0 +1,422 @@
+---
+layout: reveal
+title: Collections
+---
+
+<section data-markdown>
+<script type="text/template">
+## Collections in Java
+### Quick overview
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Collection types
+
+- **Lists**: values ordered by numeric index
+   - **Stacks** and **queues** are special types of lists
+- **Maps**: values associated with keys
+- **Sets**: no repeated values
+- **Trees**: special relationship between certain nodes
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Lists
+
+- Ordered (indexed) sequence of elements
+- Can be explored by index 0, 1, ... N
+- Can be iterated and sorted
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## List interface
+
+- **add(element)**: adds at the end of the list
+- **add(index, element)**: adds at specified index
+- **clear()**: clears list
+- **get(index)**: gets the element at the specified index
+- **remove(index)**: removes element at the specified index
+- **size()**: get list size
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## List implementations
+
+- ArrayList (internal array)
+- Vector (internal array, thread safe)
+- LinkedList (linked nodes, no array)
+- We can use **generics** (specify the list type in the definition)
+
+</script>
+</section>
+    
+<section data-markdown>
+    <script type="text/template">
+## List example
+
+```java
+List<String> stringList = new ArrayList<>();
+stringList.add("Hello");
+stringList.add("Goodbye");
+System.out.println(stringList.get(1).toUpperCase()); 
+```    
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## ArrayList vs LinkedList
+
+- ArrayList is better for searching
+- LinkedList is better for adding/removing at the beginning/end
+
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Exercise
+
+Do **Exercise 1** of the document associated to these slides
+
+</script>
+</section>
+    
+<section data-markdown>
+    <script type="text/template">
+## Sorting lists
+
+We can use <strong>Collections.sort</strong> and implement a sorting interface
+
+```java
+List<Person> people = new ArrayList<>();
+... // Fill list
+Collections.sort(people, new Comparator<Person>()
+{
+    @Override
+    public int compare(Person p1, Person p2)
+    {
+        return Integer.compare(p1.getAge(), p2.getAge());
+    }
+});      
+```      
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Maps
+
+- Collection in which every element or value is referenced by a key
+- Also called hash tables or *dictionaries*
+- If we know the key we are looking for, we can "jump" to it
+
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Map interface
+
+- **clear()** to clear the map
+- **containsKey(key)** check if map contains a given key.
+- **get(key)**: get value associated to the given key.
+- **put(key, value)**: add the specified key-value pair to the map
+- **remove(key)**: remove the key-value pair identified by the given key.
+- **size()**: get total number of elements stored
+
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Map implementations
+
+- HashMap
+- Hashtable (thread safe)
+- We can (SHOULD) use **generics**
+
+</script>
+</section>
+    
+<section data-markdown>
+    <script type="text/template">
+## Map example
+
+```java
+Map<String, Person> myMap = new HashMap<>();
+myMap.put("11223344A", new Person("Nacho", 40));
+myMap.put("22334455B", new Person("Arturo", 35));
+...
+// Print the name of the Person with key = 11223344A
+System.out.println(myMap.get("11223344A").getName());        
+
+// Exploring a map 
+for(String key : myMap.keySet())
+{
+    System.out.println(myMap.get(key).getName());
+}      
+```  
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Hash function
+
+- Converts each key into a unique numeric value
+- Every object has a `hashCode` method inherited
+- That's how Java directly locates each key-value pair
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Sets
+
+- Collection with no duplicate elements
+- No order, no indexes
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Set interface
+
+- **add(element)**: add element to the set if it's not present
+- **clear()** clear the set
+- **contains(element)**: check if a given element already exists in the set
+- **iterator()**: get an iterator and explore the elements of the set with it
+- **remove(element)**: remove the element from the set 
+- **size()**: get total number of elements
+
+</script>
+</section>
+
+<section data-markdown>
+    <script type="text/template">
+## Set example
+
+```java
+Set<String> mySet = new HashSet<>();
+mySet.add("One");
+mySet.add("Two");
+...
+mySet.remove("Two");
+
+// Exploring with an iterator
+Iterator<String> it = mySet.iterator();
+while(it.hasNext())
+{
+    String s = it.next();
+    ...
+}            
+
+// Exploring with "for"
+for (String s: mySet)
+{
+    System.out.println(s);
+}
+```
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Trees
+
+- Hierarchical structure with a root value from which we can find a set of linked nodes
+- Each of these nodes is a subtree
+- No duplicate nodes, no cycles
+
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Tree example
+
+<div align="center">
+    <img src="../../../img/06_trees.png" width="40%" />
+</div>
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Some tree features
+
+- Usually ordered (left branch < right branch)
+- Usually balanced (all the branches have the same depth)
+   - Searching an element is faster than in a list (logarithmic complexity)
+
+</script>
+</section>
+    
+<section data-markdown>
+    <script type="text/template">
+## Tree example
+
+```java
+Set<Shape> set = new TreeSet<>(new Comparator<Shape>() 
+{
+    @Override
+    public int compare(Shape s1, Shape s2) 
+    {
+        return Double.compare(s1.getArea(), s2.getArea());
+    }
+});
+
+// Elements are automatically sorted in the tree
+set.add(new Triangle(6.25, 8));
+set.add(new Triangle(7.2, 6.78));
+set.add(new Circle(4.3));
+```
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Exercise
+
+Do **Exercise 2** of the document associated to these slides
+
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## More about generics
+
+- In the documentation of *ArrayList* we can find `ArrayList<E>`
+- `<E>` is a notation to define a generic class that the compiler doesn't know until we instantiate an object
+- There can be as many generics as we want, separated by commas, represented by capital letters: `<E, T>`.
+
+</script>
+</section>
+    
+<section data-markdown>
+    <script type="text/template">   
+## Generic example
+
+```java
+public class GenericExample<T> 
+{
+    private T generic;
+    
+    public GenericExample(T generic) {
+        this.generic = generic;
+    }
+    
+    public void showType() {
+        System.out.println(generic.getClass().getName().toString());
+        // We can't use for example .substring() 
+        // since <T> can be anything.
+    }
+    
+    public T getGeneric() {
+        return generic;
+    }
+}
+
+...
+
+GenericExample<String> genEx = new GenericExample<>("Hello world!");
+genEx.showType();   // java.lang.String
+
+/* Here we can use a String method with 
+the generic object because the compiler 
+knows that the generic is a string */
+System.out.println(genEx.getGeneric().length());    
+```
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Generics with subtypes
+
+- We can specify a given subtype when creating the generic
+
+```java
+public class GenericExample<T extends Person> 
+{
+    ...
+    
+// ERROR
+GenericExample<String> genEx = 
+    new GenericExample<>("Hello world!");
+
+// OK
+GenericExample<Person> genEx = 
+    new GenericExample<>(new Person("Nacho", 40));
+```
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Defining multiple generics
+
+```java
+public class GenericExample<T extends String, E extends Person> 
+{
+    T attribute1;
+    E attribute2;
+```
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Example
+
+- We define an **Inventory** class to store the inventory of items
+- There's an **Item** class, from which we define some subclasses: **Potion**, **Weapon**...
+- We can define inventories of concrete subtypes using generics
+
+</script>
+</section>
+    
+<section data-markdown>
+    <script type="text/template">
+## Example
+
+```java
+public class Inventory<T extends Item> 
+{
+    private List<T> items = new ArrayList<>();
+    ...
+}
+            
+// Allows any type of item   
+Inventory<Item> inv = new Inventory<>();
+// Only allows potions
+Inventory<Potion> potInv = new Inventory<>();
+potInv.addItem(new Potion());    // OK
+potInv.addItem(new Weapon());    // ERROR, <T> must be a Potion
+Potion pot = potInv.getItem(0);  // Compiler knows is a Potion.                
+```
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Exercise
+
+Do **Exercise 3** of the document associated to these slides
+
+</script>
+</section>
+    

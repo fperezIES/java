@@ -1,0 +1,498 @@
+---
+layout: reveal
+title: Object oriented programming
+---
+
+<section data-markdown>
+<script type="text/template">
+## Object oriented programming in Java
+### Quick overview
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Class definition
+
+We use classes to store information about the elements of an application:
+
+- Information is stored in **attributes**
+   - They are *private*/*protected*, usually
+- Operations are defined through **methods**
+   - *Getters* and *setters* help us reach the private section 
+- **Constructors** let us instantiate objects
+</script>
+</section>
+    
+<section>
+    <h2>Class example in Java</h2>
+    <pre><code data-trim data-noescape>    
+class Book
+{
+    private String title;
+    private int numPages;
+    private double price;
+
+    // Default constructor
+    public Book()
+    {
+        title = "";
+        numPages = 0;
+        price = 0;
+    }
+
+    // Parameterized constructor
+    public Book(String title, int numPages, float price)
+    {
+        this.title = title;
+        this.numPages = numPages;
+        this.price = price;
+    }
+
+    public void printInformation()
+    {
+        System.out.println("Book information:");
+        System.out.println("Title: " + title);
+        System.out.println("Pages: " + numPages);
+        System.out.println("Price: " + price);
+    }
+
+    // Getters
+    public String getTitle()
+    {
+        return title;
+    }
+
+    public int getNumPages()
+    {
+        return numPages;
+    }
+
+    public double getPrice()
+    {
+        return price;
+    }
+
+    // Setters
+
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
+    public void setNumPages(int numPages)
+    {
+        if (numPages > 0)
+            this.numPages = numPages;
+    }
+
+    public void setPrice(double price)
+    {
+        if (price >= 0)
+            this.price = price;
+    }    
+}
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Class associations
+
+- Relationship between two classes, in which an object of one of the classes is an attribute or instance variable of the other class
+- It's a *has-a* relationship
+
+</script>
+</section>
+
+<section>
+    <h2>Association example in Java</h2>
+    <pre><code data-trim data-noescape>    
+class Book 
+{    
+    private String title;
+    private int numPages;
+    private double price;
+    private Author author;
+
+    public Book(String title, int numPages, double price, 
+        Author author) 
+    {   
+        ...     
+    </code></pre>
+</section>
+
+<section>
+    <h2>Association example in Java</h2>
+    <pre><code data-trim data-noescape>    
+Author a = new Author("J.R.R. Tolkien", 1892);
+Book b = new Book("The lord of the Rings", 850, 13.50, a);
+
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Aggregations and compositions
+
+Associations in which one class is a whole and the other one is a part of this whole
+
+- **Aggregations**: the part can exist without the whole
+   - Example: Team and Players
+- **Compositions**: the part can't exist without the whole
+   - Example: House and Rooms
+
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Composition/Aggregation example
+
+<div align="center">
+    <img src="https://nachoiborraies.github.io/entornos/img/ED_b1_tema04-ejemplo_agregacion_en.png" width="50%" />
+</div>
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Aggregation/Composition in practice
+
+- Aggregations are implemented just like simple associations (unidirectional from the whole to the part, usually)
+- Compositions need to hide the part in the whole (attribute must be private and created inside the class)
+   - Not easy to implement
+
+</script>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Class inheritance
+
+- Relationship between two classes, in which one is a subtype of the other, and automatically includes all the behavior of parent class
+- It's a *is-a* relationship
+- We use reserved word *extends* to represent it
+
+</script>
+</section>
+    
+<section>
+    <h2>Inheritance example in Java</h2>
+    <pre><code data-trim data-noescape>    
+class Comic extends Book
+{
+    private boolean color;
+    private int volumeNumber;
+
+    public Comic(String title, int numPages, double price,
+        boolean color, int volumeNumber)
+    {
+        super(title, numPages, price);
+        this.color = color;
+        this.volumeNumber = volumeNumber;
+    }
+
+    public boolean getColor()
+    {
+        return color;
+    }
+
+    public void setColor(boolean color)
+    {
+        this.color = color;
+    }
+
+    public int getVolumeNumber()
+    {
+        return volumeNumber;
+    }
+
+    public void setVolumeNumber(int volumeNumber)
+    {
+        this.volumeNumber = volumeNumber;
+    }
+
+    @Override
+    public void printInformation()
+    {
+        super.printInformation();
+        System.out.println("Color/Grayscale: " + 
+            (color?"Color":"Grayscale"));
+        System.out.println("Volume: " + volumeNumber);
+    }
+}
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Polymorphism
+
+- Ability of an object to behave like another object
+- An object of any class can behave like any of its subclasses
+- Polymorphic object behaves like PARENT class (not like child class)
+
+</script>
+</section>
+
+<section>
+    <h2>Polymorphism example in Java</h2>
+    <pre><code data-trim data-noescape>    
+class Vehicle
+{
+    ...
+}
+
+class Car extends Vehicle
+{
+    ...
+}
+
+class Van extends Vehicle
+{
+    ...
+}
+    </code></pre>
+</section>
+
+<section>
+    <h2>Polymorphism example in Java</h2>
+    <p>We can instantiate a subtype from main type</p>
+    <pre><code data-trim data-noescape>    
+Vehicle v = new Car(...);
+    </code></pre>
+</section>
+
+<section>
+    <h2>Polymorphism example in Java</h2>
+    <p>We can define an array of parent class</p>
+    <pre><code data-trim data-noescape>    
+Vehicle[] vehicles = new Vehicle[10];
+
+vehicles[0] = new Car(...);
+vehicles[1] = new Van(...);
+...     
+    </code></pre>
+</section>
+
+<section>
+    <h2>Polymorphism example in Java</h2>
+    <p>We can pass a parameter of any subtype to a method expecting parent class</p>
+    <pre><code data-trim data-noescape>    
+public void aMethod(Vehicle v) 
+{
+    ...
+}
+
+Car anotherCar = new Car(...);
+aMethod(anotherCar);        
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Abstract classes
+
+- Classes that can't be instantiated directly
+- They (can) have unimplemented (abstract) code
+- They provide a general structure for subclasses
+
+</script>
+</section>
+
+<section>
+    <h2>Example of an abstract class</h2>
+    <pre><code data-trim data-noescape>    
+public abstract class Animal
+{
+    String color;
+    int numberOfLegs;
+
+    public Animal(String color, int numberOfLegs)
+    {
+        this.color = color;
+        this.numberOfLegs = numberOfLegs;
+    }
+
+    public String getColor()
+    {
+        return color;
+    }
+
+    public void setColor(String color)
+    {
+        this.color = color;
+    }
+
+    public abstract void talk();
+}
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Abstract class inheritance
+
+We can inherit from an abstract class to:
+
+- Create a new abstract subclass
+   - We can then add new abstract behavior
+- Create a new non-abstract subclass
+   - In this case, we MUST implement every abstract method
+
+</script>
+</section>
+
+<section>
+    <h2>Example of abstract class inheritance</h2>
+    <pre><code data-trim data-noescape>    
+public abstract class Bird extends Animal
+{
+    public abstract void fly();
+}
+
+public class Duck extends Bird
+{
+    public Duck(String color, int numberOfLegs)
+    {
+        super(color, numberOfLegs);
+    }
+
+    @Override
+    public void talk()
+    {
+        System.out.println("Quack quack!!");
+    }
+
+    @Override
+    public void fly()
+    {
+        System.out.println("I'm flying like a duck!");
+    }
+}
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Interfaces
+
+- Special type of class with no code implemented
+- They can't be directly instantiated
+- They define a bunch of methods that need to be implemented
+- Implementing classes **act as** the interface
+
+</script>
+</section>
+
+<section>
+    <h2>Example of an interface</h2>
+    <pre><code data-trim data-noescape>    
+public interface Shape
+{
+    public float calculateArea();
+    public void draw();
+}        
+    </code></pre>
+</section>
+
+<section>
+    <h2>Example of interface implementation</h2>
+    <pre><code data-trim data-noescape>    
+public class Circle implements Shape
+{
+    float radius;
+
+    public Circle(float radius)
+    {
+        this.radius = radius;
+    }
+
+    @Override
+    public float calculateArea()
+    {
+        return Math.PI * radius * radius;
+    }
+
+    @Override
+    public void draw()
+    {
+        System.out.println("Drawing a circle!");
+    }
+}        
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Extending vs implementing
+
+- We can only extend (inherit) from one class
+- We can implement as many interfaces as we need
+- First, we specify inheritance (if any) and then implementations
+
+```java
+public class MyShape 
+extends AnotherClass 
+implements Shape, Comparable
+```
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Anonymous classes
+
+- Classes defined "on the fly" to implement an abstract class or interface
+- Useful for single use
+
+</script>
+</section>
+
+<section>
+    <h2>Example: sorting objects</h2>
+    <p>We implement <em>Comparator</em> interface with an anonymous class</p>
+    <pre><code data-trim data-noescape>    
+Person[] people = new Person[50];
+... // Fill array
+Arrays.sort(people, new Comparator<Person>()
+{
+    @Override
+    public int compare(Person p1, Person p2)
+    {
+        return Integer.compare(p1.getAge(), p2.getAge());
+    }
+});           
+    </code></pre>
+</section>
+
+<section data-markdown>
+<script type="text/template">
+## Functional interfaces
+
+- Interfaces with just one method to be implemented
+- Useful in functional programming (they can be implemented with lambdas)
+- Examples in Java API:
+   - Comparator, Predicate, Consumer, Function...
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Exercise
+
+Do **Exercise 1** of the document associated to these slides
+
+</script>
+</section>
+    
+<section data-markdown>
+<script type="text/template">
+## Exercise
+
+Do **Exercise 2** of the document associated to these slides
+
+</script>
+</section>
