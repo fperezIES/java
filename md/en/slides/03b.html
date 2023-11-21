@@ -28,7 +28,7 @@ title: Enums
 - Must be placed outside the class
 
 ```java
-enum dayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, 
+enum DayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, 
     FRIDAY, SATURDAY, SUNDAY};
 ```
 
@@ -42,7 +42,7 @@ enum dayOfWeek { MONDAY, TUESDAY, WEDNESDAY, THURSDAY,
 - *enum name* + *variable name*
 
 ```java
-dayOfWeek aDay = dayOfWeek.FRIDAY;
+DayOfWeek aDay = DayOfWeek.FRIDAY;
 ```
 
 </script>
@@ -56,7 +56,7 @@ dayOfWeek aDay = dayOfWeek.FRIDAY;
 - We can either work with the enum value or with its inner index using *ordinal()*
 
 ```java
-dayOfWeek aDay = dayOfWeek.FRIDAY;
+DayOfWeek aDay = DayOfWeek.FRIDAY;
 System.out.println(aDay);           // Prints FRIDAY
 System.out.println(aDay.ordinal()); // Prints 4
 ```
@@ -73,8 +73,8 @@ System.out.println(aDay.ordinal()); // Prints 4
 ```java
 Scanner sc = new Scanner(System.in);
 System.out.println("Enter a day of the week:");
-dayOfWeek aDay1 = dayOfWeek.valueOf(sc.nextLine());  // If user types FRIDAY
-dayOfWeek aDay2 = dayOfWeek.values()[sc.nextInt()];  // If user types 4
+DayOfWeek aDay1 = DayOfWeek.valueOf(sc.nextLine());  // If user types FRIDAY
+DayOfWeek aDay2 = DayOfWeek.values()[sc.nextInt()];  // If user types 4
 ```
 
 </script>

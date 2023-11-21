@@ -70,14 +70,12 @@ System.out.println(numbers[2] * numbers[4]);
 
 ```java
 // Option 1: length property
-for (int i = 0; i < numbers.length; i++)
-{
+for (int i = 0; i < numbers.length; i++){
     System.out.println(numbers[i]);
 }
 
 // Option 2: alternative "for" (readonly purposes)
-for (int n: numbers)
-{
+for (int n: numbers){
     System.out.println(n);
 }
 ```
@@ -107,24 +105,19 @@ int[] numbers = {1, 2, 3, 4};       // Array of 4 numbers
 ```java
 boolean found = false;
 int i = 0;
-while (!found && i < numbers.length)
-{
-    if (numbers[i] == 15)
-    {
+while (!found && i < numbers.length){
+    if (numbers[i] == 15){
         found = true;
     }
-    else
-    {
+    else{
         i++;
     }
 }
 
-if (found)
-{
+if (found){
     System.out.println("Number found at position " + i);
 }
-else
-{
+else{
     System.out.println("Number not found";
 }
 ```
@@ -140,10 +133,8 @@ else
 
 ```java
 int counter = 0;
-for (int i = 0; i < numbers.length; i++)
-{
-    if (numbers[i] == 15)
-    {
+for (int i = 0; i < numbers.length; i++){
+    if (numbers[i] == 15){
         counter++;
     }
 }
@@ -183,12 +174,9 @@ System.out.println("The maximum is " + maximum);
 - *Bubble algorithm*: explore adjacent positions and exchange them is they are not sorted
 
 ```java
-for (int i = 0; i < numbers.length; i++)
-{
-    for (int j = 0; j < numbers.length - i - 1; j++)
-    {
-        if (numbers[j] > numbers[j+1])
-        {
+for (int i = 0; i < numbers.length; i++){
+    for (int j = 0; j < numbers.length - i - 1; j++){
+        if (numbers[j] > numbers[j+1]){
             int aux = numbers[i];
             numbers[i] = numbers[j];
             numbers[j] = aux;
@@ -207,12 +195,9 @@ for (int i = 0; i < numbers.length; i++)
 - *Direct exchange*: explore next positions and look for the lowest element to be placed at current position
 
 ```java
-for (int i = 0; i < numbers.length - 1; i++)
-{
-    for (int j = i + 1; j < numbers.length; j++)
-    {
-        if (numbers[i] > numbers[j])
-        {
+for (int i = 0; i < numbers.length - 1; i++){
+    for (int j = i + 1; j < numbers.length; j++)    {
+        if (numbers[i] > numbers[j]){
             int aux = numbers[i];
             numbers[i] = numbers[j];
             numbers[j] = aux;
@@ -273,11 +258,9 @@ table[2][8] = 12;       // 3rd row, 9th column
 
 ```java
 // Explore rows
-for (int i = 0; i < table.length; i++)
-{
+for (int i = 0; i < table.length; i++){
     // Explore columns for row i
-    for (int j = 0; j < table[i].length; j++)
-    {
+    for (int j = 0; j < table[i].length; j++){
         System.out.print(table[i][j] + " ");
     }
     System.out.println();

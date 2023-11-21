@@ -88,11 +88,12 @@ String text2 = String.valueOf(number);
    - NEVER use *==* operator in Java
 
 ```Java
-if (text1.equals(text2))
+if (text1.equals(text2)){
     System.out.println("Texts are equal");
-
-if ("hello".equalsIgnoreCase("HELLO"))
+}
+if ("hello".equalsIgnoreCase("HELLO")){
     System.out.println("Text are equal ignoring cases");
+}
 ```
    
 </script>
@@ -106,8 +107,9 @@ if ("hello".equalsIgnoreCase("HELLO"))
     - It returns a positive number if first string is greater, negative if it's lower, and 0 if they are equal
 
 ```Java
-if (text1.compareTo(text2) < 0)
+if (text1.compareTo(text2) < 0){
     System.out.println("Second text is greater");
+}
 ```
 
 </script>
@@ -120,8 +122,9 @@ if (text1.compareTo(text2) < 0)
 - **contains** instructions checks if a text is contained into another text
 
 ```Java
-if (text.contains("hello"))
+if (text.contains("hello")){
 	System.out.println("There is a 'hello' in the text");
+}
 ```
 
 </script>
@@ -136,8 +139,9 @@ if (text.contains("hello"))
 
 ```Java
 int pos = text.indexOf("hello");
-if (pos >= 0)
+if (pos >= 0){
 	System.out.println("There is a 'hello' at position" + pos);
+}
 ```
 
 </script>
@@ -151,8 +155,9 @@ if (pos >= 0)
 - **endsWith** checks if a string ends with a given suffix
 
 ```Java
-if (text.startsWith("Hello"))
+if (text.startsWith("Hello")){
 	System.out.println("Text starts with 'Hello'");
+}
 ```
 
 </script>
