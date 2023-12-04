@@ -30,7 +30,7 @@ This prints a square filled with asterisks, whose size is determined by variable
 
 ```java
 for (int i = 1; i <= size; i++) {
-    for (int j = 1; j <= size; j++)    {
+    for (int j = 1; j <= size; j++) {
         System.out.print("*");
     }
     System.out.println();
@@ -108,8 +108,7 @@ for (int i = 1; i <= 10; i++)
 NOT recommended. They can always be avoided
 
 ```java
-for (int i = 1; i <= 10; i++)
-{
+for (int i = 1; i <= 10; i++) {
     if (i != 5)
         System.out.println(i);
 }
@@ -137,8 +136,8 @@ Every group of lines that represents a concrete task must be separated verticall
 ```java
 import java.util.Scanner;
 
-public class Program{
-    public static void main(String[] args){
+public class Program {
+    public static void main(String[] args) {
         int personAge;
         String personName;
         Scanner sc = new Scanner(System.in);
@@ -194,6 +193,7 @@ public static void Main()
     {
         ...
     }
+}
 ...
 ```
 
@@ -218,9 +218,9 @@ public static void Main()
 Example of line width checking
 
 ```java
-if ((personAge > 18 && personAge <= 65) ||
-    (personName.equals("John")) || (personName.equals("Mary"))) 
-{
+if ((personAge > 18 && personAge <= 65) 
+        || (personName.equals("John")) 
+        || (personName.equals("Mary"))) {
     ...
 }
 ```
