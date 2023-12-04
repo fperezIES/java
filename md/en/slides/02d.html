@@ -29,10 +29,8 @@ title: Some additional concepts
 This prints a square filled with asterisks, whose size is determined by variable *size*
 
 ```java
-for (int i = 1; i <= size; i++)
-{
-    for (int j = 1; j <= size; j++)
-    {
+for (int i = 1; i <= size; i++) {
+    for (int j = 1; j <= size; j++)    {
         System.out.print("*");
     }
     System.out.println();
@@ -75,8 +73,7 @@ Create a program called **Counter** that asks the user to write a number between
 It exits the loop in which it is placed
 
 ```java
-for (int i = 1; i <= 10; i++)
-{
+for (int i = 1; i <= 10; i++) {
     System.out.println(i);
     if (i == 5)
         break;
@@ -140,10 +137,8 @@ Every group of lines that represents a concrete task must be separated verticall
 ```java
 import java.util.Scanner;
 
-public class Program 
-{
-    public static void main(String[] args) 
-    {
+public class Program{
+    public static void main(String[] args){
         int personAge;
         String personName;
         Scanner sc = new Scanner(System.in);
