@@ -63,8 +63,7 @@ Errors in an application can be:
 int number;
 string text = ... // Whatever value
 
-try
-{
+try {
     number = Integer.parseInt(text);
 } catch (NumberFormatException e) {
     System.err.println("Error parsing text: " + e.getMessage());
@@ -82,8 +81,7 @@ try
 - We can catch the specific subtype of exception or just catch the generic *Exception* instead
 
 ```Java
-try
-{
+try {
     ...
 } catch (Exception e) {
     System.err.println("Error: " + e.getMessage());
@@ -101,8 +99,7 @@ try
 - Must be placed from less general to more general
 
 ```Java
-try
-{
+try {
     // Code that may fail
 } catch (NumberFormatException e1) {
     // Error message for number format
@@ -124,12 +121,12 @@ try
 - We produce or propagate an error to be managed in another part of the code
 
 ```java
-public static int divide (int n1, int n2)
-{
-    if (n2 == 0)
+public static int divide (int n1, int n2) {
+    if (n2 == 0) {
         throw new ArithmeticException("Can't divide by zero");
-    else
+    } else {
         return n1 / n2;
+    }
 }
 
 public static void anotherFunction()
@@ -138,12 +135,10 @@ public static void anotherFunction()
 
     // ... Ask user to fill number1 and number2
 
-    try
-    {
+    try {
         int result = divide(number1, number2);
     }
-    catch (ArithmeticException e)
-    {
+    catch (ArithmeticException e) {
         System.err.println("Error: " + e.getMessage());
     }
 }
@@ -159,30 +154,24 @@ public static void anotherFunction()
 - Used in the function header when the exception produced is a *checked* exception, such as *InterruptedException*
 
 ```java
-public static void a() throws InterruptedException
-{
+public static void a() throws InterruptedException {
     throw new InterruptedException ("Exception in a");
 }
 
-public static void b() throws InterruptedException
-{
+public static void b() throws InterruptedException {
     a();
 }
 
-public static void c() throws InterruptedException
-{
+public static void c() throws InterruptedException {
     b();
 }
 
-public static void d() throws InterruptedException
-{
+public static void d() throws InterruptedException {
     c();
 }
 
-public static void main(String[] args)
-{
-    try
-    {
+public static void main(String[] args) {
+    try {
         d();
     } catch (InterruptedException e) {
         System.err.println("Exception: " + e.getMessage());
@@ -201,22 +190,21 @@ public static void main(String[] args)
 
 ```java
 public static void multipleExceptionsFunction()
-throws IOException, InterruptedException
-{
+throws IOException, InterruptedException {
     ...
-    if (...)
+    if (...) {
         throw new IOException("IOException produced");
+    }
     ...
-    if (...)
+    if (...) {
         throw new InterruptedException("Interrupted!!");
+    }
 }
 
 ...
 
-public static void anotherFunction()
-{
-    try
-    {
+public static void anotherFunction() {
+    try {
         multipleExceptionsFunction();
     } catch (IOException e1) {
         System.err.println(...);

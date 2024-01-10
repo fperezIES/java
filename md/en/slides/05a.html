@@ -117,8 +117,7 @@ From object oriented programming approach we must
 ## Defining classes in Java
 
 ```java
-class Book
-{
+class Book {
     String title;
     int numPages;
     double price;
@@ -150,17 +149,14 @@ myBook.price = 11.95;
 ## Full example
 
 ```java
-class Book
-{
+class Book {
     String title;
     int numPages;
     double price;
 }
 
-class BookExample
-{
-    public static void main(String[] args)
-    {
+class BookExample {
+    public static void main(String[] args) {
         Book myBook = new Book();
         myBook.title = "Ender's game";
         myBook.numPages = 321;
@@ -197,14 +193,12 @@ class BookExample
 - Functions inside a class to do some operations. Also called *instance methods*.
 
 ```java
-class Book
-{
+class Book {
     String title;
     int numPages;
     double price;
 
-    void printInformation()
-    {
+    void printInformation() {
         System.out.println("Book information:");
         System.out.println("Title: " + title);
         System.out.println("Pages: " + numPages);
@@ -214,8 +208,7 @@ class Book
 
 class BookExample
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Book myBook = new Book();
         myBook.title = "Ender's game";
         myBook.numPages = 321;
@@ -256,22 +249,19 @@ class BookExample
 ## Default constructor
 
 ```java
-class Book
-{
+class Book {
     String title;
     int numPages;
     double price;
 
     // Default constructor
-    Book()
-    {
+    Book() {
         title = "";
         numPages = 0;
         price = 0;
     }
 
-    void printInformation()
-    {
+    void printInformation() {
         System.out.println("Book information:");
         System.out.println("Title: " + title);
         System.out.println("Pages: " + numPages);
@@ -281,8 +271,7 @@ class Book
 
 class BookExample
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Book myBook = new Book();
         myBook.printInformation();
 
@@ -302,30 +291,26 @@ class BookExample
 It has parameters with values to be assigned to the attributes
 
 ```java
-class Book
-{
+class Book {
     String title;
     int numPages;
     double price;
 
     // Default constructor
-    Book()
-    {
+    Book() {
         title = "";
         numPages = 0;
         price = 0;
     }
 
     // Parameterized constructor
-    Book(String t, int n, float p)
-    {
+    Book(String t, int n, float p) {
         title = t;
         numPages = n;
         price = p;
     }
 
-    void printInformation()
-    {
+    void printInformation() {
         System.out.println("Book information:");
         System.out.println("Title: " + title);
         System.out.println("Pages: " + numPages);
@@ -333,10 +318,8 @@ class Book
     }
 }
 
-class BookExample
-{
-    public static void main(String[] args)
-    {
+class BookExample {
+    public static void main(String[] args) {
         Book myBook = new Book("Ender's game", 321, 11.95);
         myBook.printInformation();
 
@@ -367,30 +350,26 @@ class BookExample
 ## Visibility
 
 ```java
-class Book
-{
+class Book {
     private String title;
     private int numPages;
     private double price;
 
     // Default constructor
-    public Book()
-    {
+    public Book() {
         title = "";
         numPages = 0;
         price = 0;
     }
 
     // Parameterized constructor
-    public Book(String t, int n, float p)
-    {
+    public Book(String t, int n, float p) {
         title = t;
         numPages = n;
         price = p;
     }
 
-    public void printInformation()
-    {
+    public void printInformation() {
         System.out.println("Book information:");
         System.out.println("Title: " + title);
         System.out.println("Pages: " + numPages);
@@ -398,10 +377,8 @@ class Book
     }
 }
 
-class BookExample
-{
-    public static void main(String[] args)
-    {
+class BookExample {
+    public static void main(String[] args) {
         Book myBook = new Book("Ender's game", 321, 11.95);
 
         // ERROR: title is not public
@@ -429,30 +406,26 @@ class BookExample
 ## Getters and setters. Encapsulation
 
 ```java
-class Book
-{
+class Book {
     private String title;
     private int numPages;
     private double price;
 
     // Default constructor
-    public Book()
-    {
+    public Book() {
         title = "";
         numPages = 0;
         price = 0;
     }
 
     // Parameterized constructor
-    public Book(String t, int n, float p)
-    {
+    public Book(String t, int n, float p) {
         title = t;
         numPages = n;
         price = p;
     }
 
-    public void printInformation()
-    {
+    public void printInformation() {
         System.out.println("Book information:");
         System.out.println("Title: " + title);
         System.out.println("Pages: " + numPages);
@@ -460,36 +433,30 @@ class Book
     }
 
     // Getters
-    public String getTitle()
-    {
+    public String getTitle() {
         return title;
     }
 
-    public int getNumPages()
-    {
+    public int getNumPages() {
         return numPages;
     }
 
-    public double getPrice()
-    {
+    public double getPrice() {
         return price;
     }
 
     // Setters
 
-    public void setTitle(String t)
-    {
+    public void setTitle(String t) {
         title = t;
     }
 
-    public void setNumPages(int n)
-    {
+    public void setNumPages(int n) {
         if (n > 0)
             numPages = n;
     }
 
-    public void setPrice(double p)
-    {
+    public void setPrice(double p) {
         if (p >= 0)
             price = p;
     }    
@@ -497,8 +464,7 @@ class Book
 
 class BookExample
 {
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Book myBook = new Book("Ender's game", 321, 11.95);
         myBook.setNumPages(355); // OK
         myBook.setPrice(-3);     // Has no effect
@@ -547,14 +513,12 @@ Create a source file called **TeamsExample.java**. Define a class called `Team` 
 ## Using *this*
 
 ```java
-class Book
-{
+class Book {
     private String title;
     private int numPages;
     private double price;
 
-    public Book(String title, int numPages, float price)
-    {
+    public Book(String title, int numPages, float price) {
         this.title = title;
         this.numPages = numPages;
         this.price = price;
@@ -562,8 +526,7 @@ class Book
 
     ...
 
-    public void setPrice(double price) 
-    {
+    public void setPrice(double price) {
         if (price >= 0)
             this.price = price;
     }
@@ -600,8 +563,7 @@ books[1] = new Book("The never ending story", 525, 14.15);
 ...
 
 // Or with a loop:
-for (int i = 0; i < books.length; i++)
-{
+for (int i = 0; i < books.length; i++) {
     books[i] = new Book(...);
 }
 ```
