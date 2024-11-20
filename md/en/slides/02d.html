@@ -75,8 +75,9 @@ It exits the loop in which it is placed
 ```java
 for (int i = 1; i <= 10; i++) {
     System.out.println(i);
-    if (i == 5)
+    if (i == 5){
         break;
+    }
 }
 ```
 
@@ -92,8 +93,9 @@ It forces a new iteration of the loop, without running the instructions below it
 ```java
 for (int i = 1; i <= 10; i++)
 {
-    if (i == 5)
+    if (i == 5){
         continue;
+    }
     System.out.println(i);
 }
 ```
@@ -109,8 +111,9 @@ NOT recommended. They can always be avoided
 
 ```java
 for (int i = 1; i <= 10; i++) {
-    if (i != 5)
+    if (i != 5){
         System.out.println(i);
+    }
 }
 ```
 
@@ -148,8 +151,9 @@ public class Program {
         System.out.println("Tell me your age:");
         personAge = sc.nextInt();
 
-        if (personAge > 18)
+        if (personAge > 18){
             System.out.println("You are an adult, " + personName);
+        }
     }
 }
 ```

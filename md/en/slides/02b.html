@@ -98,7 +98,7 @@ if (age >= 18 && age <= 30){
 - Each of the possible values of this expression can be represented with a `case` clause
 - A `default` optional case can represent any other possible value
 - A `break` instruction can be placed at the end of each *case* to exit the clause
-- Only simple values allowed (strings since Java 7)
+- Only simple values allowed (Strings since Java 7)
 
 </script>
 </section>
@@ -108,12 +108,17 @@ if (age >= 18 && age <= 30){
 ## *switch* clause
 
 ```Java
-switch(number)
-{
-    case 0:	System.out.println("It is 0"); break;
-    case 1: System.out.println("It is 1");
-    case 2: System.out.println("It is 2"); break;
-    default: System.out.println("Unknown number");
+switch(number){
+    case 0:	
+        System.out.println("It is 0"); 
+        break;
+    case 1: 
+        System.out.println("It is 1");
+        //fallthrough
+    case 2: 
+        System.out.println("It is 2"); break;
+    default: 
+        System.out.println("Unknown number");
 }
 ```
 
